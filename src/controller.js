@@ -67,4 +67,27 @@ export const editNoteById = (req, res) => {
             message: 'Ctatan berhasil diperbarui'
         });
     }
+
+    return res.status(404).json({
+        status: 'fail',
+        message: 'Gagal memperbarui cacatan. Id tidak ditemukan'
+    });
+};
+
+export const deleteNoteById = (req, res) => {
+    const { id } = req.params;
+    const index = notes.findIndex((n) => n.id === id);
+
+    if (index !== -1) {
+        notes.splice(index, 1);
+        return res.json({
+            status: 'success',
+            message: 'Cattan berhasil dihapus'
+        });
+    }
+
+    return res.status(404).json({
+        status: 'fail',
+        message: 'Gagal memperbarui cacatan. Id tidak ditemukan'
+    });
 };
