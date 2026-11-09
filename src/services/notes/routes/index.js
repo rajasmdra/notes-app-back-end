@@ -7,7 +7,7 @@ import {
     editNoteById,
     getNotes,
     getNoteById
-} from './controller.js';
+} from '../controller/note-controller.js';
 
 const routes = express.Router();
 routes.post('/notes', createNote);

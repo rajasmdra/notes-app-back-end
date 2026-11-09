@@ -3,9 +3,9 @@
 /* eslint-disable no-trailing-spaces */
 
 import { nanoid } from 'nanoid';
-import notes from '../../../notes.js';
+import notes from '../notes.js';
 
-export const createNote = (req, res, next) => {
+export const createNote = (req, res) => {
     const { title = 'untitled', tags, body } = req.body;
     const id = nanoid(16);
     const createdAt = new Date().toISOString();
@@ -17,7 +17,7 @@ export const createNote = (req, res, next) => {
     const isSuccess = notes.filter((note) => note.id === id).length > 0;
 
     if (isSuccess) {
-        return res.status(201).json({p
+        return res.status(201).json({
             status: 'success',
             message: 'Catatan berhasil ditambahkan',
             data: { noteId: id }
