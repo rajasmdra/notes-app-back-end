@@ -3,7 +3,7 @@
 /* eslint-disable no-trailing-spaces */
 
 import { nanoid } from 'nanoid';
-import notes from './notes.js';
+import notes from '../../../notes.js';
 
 export const createNote = (req, res, next) => {
     const { title = 'untitled', tags, body } = req.body;
@@ -17,9 +17,9 @@ export const createNote = (req, res, next) => {
     const isSuccess = notes.filter((note) => note.id === id).length > 0;
 
     if (isSuccess) {
-        return res.status(201).json({
+        return res.status(201).json({p
             status: 'success',
-            message: 'Catatan berhasil ditambahakan',
+            message: 'Catatan berhasil ditambahkan',
             data: { noteId: id }
         });
     }
@@ -64,7 +64,7 @@ export const editNoteById = (req, res) => {
         notes[index] = { ...notes[index], title, tags, body, updatedAt };
         return res.json({
             status: 'success',
-            message: 'Ctatan berhasil diperbarui'
+            message: 'Catatan berhasil diperbarui'
         });
     }
 
@@ -82,7 +82,7 @@ export const deleteNoteById = (req, res) => {
         notes.splice(index, 1);
         return res.json({
             status: 'success',
-            message: 'Cattan berhasil dihapus'
+            message: 'Catatan berhasil dihapus'
         });
     }
 
