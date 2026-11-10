@@ -2,7 +2,7 @@
 /* eslint-disable indent */
 const response = (res, statusCode, message, data) => {
     return res
-        .statusCode
+        .status(statusCode)
         .json({
             code: statusCode,
             status: statusCode < 400 ? 'success' : 'failed',
