@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable indent */
 /**
  * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
@@ -16,6 +17,10 @@ exports.up = (pgm) => {
             primaryKey: true,
         },
         title: {
+            type: 'TEXT',
+            notNull: true,
+        },
+        body: {
             type: 'TEXT',
             notNull: true,
         },
