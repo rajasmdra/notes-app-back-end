@@ -3,7 +3,7 @@
 import { nanoid } from 'nanoid';
 import { Pool } from 'pg';
 
-class NoteRepositories {
+class NotesRepositories {
     constructor() {
         this.pool =  new Pool();
     }
@@ -14,7 +14,7 @@ class NoteRepositories {
         const updatedAt = createdAt;
 
         const query = {
-            text: 'INSERT INTO notes(id, title, body, tags, created_at, updated_at) VALUES($1, $2, $3, $$, $5, $6) RETURNING id, title, body, tags, created_at, updated_at',
+            text: 'INSERT INTO notes(id, title, body, tags, created_at, updated_at) VALUES($1, $2, $3, $4, $5, $6) RETURNING id, title, body, tags, created_at, updated_at',
             values: [id, title, body, tags, createdAt, updatedAt],
         };
 
@@ -60,8 +60,12 @@ class NoteRepositories {
 
         const result = await this.pool.query(query);
 
+        if (!result.rowCount) {
+            return null;
+        }
+
         return result.rows[0].id;
     }
 }
 
-export default new NoteRepositories();
+export default new NotesRepositories();
