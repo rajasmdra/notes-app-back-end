@@ -8,7 +8,8 @@
     "start:dev": "nodemon ./src/server.js",
     "migrate": "node-pg-migrate",
     "lint": "eslint ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "newman": "newman run test/notes-api-test.postman_collection.json --environment test/notes-api-test.postman_environment.json"
   },
   "keywords": [],
   "author": "",
