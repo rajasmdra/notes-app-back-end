@@ -9,7 +9,8 @@
     "migrate": "node-pg-migrate",
     "lint": "eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "newman": "newman run test/notes-api-test.postman_collection.json --environment test/notes-api-test.postman_environment.json"
+    "newman": "newman run test/notes-api-test.postman_collection.json --environment test/notes-api-test.postman_environment.json",
+    "ssh": "ssh -i \"notes-api-webserver.pem\" ubuntu@ec2-3-27-30-234.ap-southeast-2.compute.amazonaws.com"
   },
   "keywords": [],
   "author": "",
