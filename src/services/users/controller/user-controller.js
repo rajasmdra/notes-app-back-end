@@ -1,9 +1,9 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable indent */
-import InvariantError from '../../../exceptions/invariant-error';
-import NotFoundError from '../../../exceptions/not-found-error';
-import response from '../../../utils/response';
-import UserRepositories from '../repositories/user-repositories';
+import InvariantError from '../../../exceptions/invariant-error.js';
+import NotFoundError from '../../../exceptions/not-found-error.js';
+import response from '../../../utils/response.js';
+import UserRepositories from '../repositories/user-repositories.js';
 
 export const createUser = async (req, res, next) => {
     const { username, password, fullname } = req.validated;
