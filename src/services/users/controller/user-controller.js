@@ -8,22 +8,22 @@ import UserRepositories from '../repositories/user-repositories.js';
 export const createUser = async (req, res, next) => {
     const { username, password, fullname } = req.validated;
 
-    const isUsernameExist = await UserRepositories.verifyNewUsername(username);
-    if (!isUsernameExist) {
+    const isNewUsername = await UserRepositories.verifyNewUsername(username);
+    if (!isNewUsername) {
         return next(new InvariantError('Gagal menambahkan user. Username sudah digunakan.'));
     }
 
-    const user = await UserRepositories.createUser({
+    const userId = await UserRepositories.createUser({
         username,
         password,
         fullname,
     });
 
-    if (!user) {
+    if (!userId) {
         return next(new InvariantError('User gagal ditambahkan'));
     }
 
-    return response(res, 201, 'User berhasil ditambahkan', user);
+    return response(res, 201, 'User berhasil ditambahkan', { userId });
 };
 
 export const getUserById = async (req, res, next) => {
@@ -34,5 +34,5 @@ export const getUserById = async (req, res, next) => {
         return next(new NotFoundError('User tidak ditemukan'));
     }
 
-    return response(res, 200, 'User berhasil ditampilkan', user);
+    return response(res, 200, 'User berhasil ditampilkan', { user });
 };

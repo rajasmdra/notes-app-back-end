@@ -11,13 +11,14 @@ import {
 import validate from '../../../middlewares/validate.js';
 import validateQuery from '../../../middlewares/validateQuery.js';
 import { notePayloadSchema, noteQuerySchema } from '../validator/schema.js';
+import authenticateToken from '../../../middlewares/auth.js';
 
 const routes = express.Router();
 
-routes.post('/notes', validate(notePayloadSchema), createNote);
-routes.get('/notes', validateQuery(noteQuerySchema), getNotes);
-routes.get('/notes/:id', getNoteById);
-routes.put('/notes/:id', validate(notePayloadSchema), editNoteById);
-routes.delete('/notes/:id', deleteNoteById);
+routes.post('/notes', authenticateToken, validate(notePayloadSchema), createNote);
+routes.get('/notes', authenticateToken, validateQuery(noteQuerySchema), getNotes);
+routes.get('/notes/:id', authenticateToken, getNoteById);
+routes.put('/notes/:id', authenticateToken, validate(notePayloadSchema), editNoteById);
+routes.delete('/notes/:id', authenticateToken, deleteNoteById);
 
 export default routes;

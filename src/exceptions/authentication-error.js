@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable indent */
-import ClientError from './client-error';
+import ClientError from './client-error.js';
 
 class AuthenticationError extends ClientError {
     constructor(message) {
